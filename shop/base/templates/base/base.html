@@ -1,0 +1,23 @@
+{% load static tailwind_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+
+        {% block title %}
+        {% endblock %}
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/heroicons@1.0.6/outline.js"></script> <!-- Heroicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {% tailwind_css %}
+</head>
+
+<body class="bg-[radial-gradient(circle,_#8bedf6,_#0d1b2a)] h-screen flex items-center justify-center relative bg-opacity-100">
+    <!-- Gradient Circle -->
+    <div className="w-[80%] h-[200px] md:w-[500px] md:h-[300px] bg-slate-900 rounded-full absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] blur-[100px]"></div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
