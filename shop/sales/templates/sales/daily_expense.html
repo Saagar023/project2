@@ -66,7 +66,7 @@
         <!-- Expenses Record -->
         <div class="flex-1 bg-gray-700 p-4 rounded-lg mt-4 md:mt-0">
             <h2 class="text-center font-semibold pb-2 border-b border-gray-600">Expenses Record</h2>
-            <table id="expensesRecord" class="mt-4 w-full text-sm text-left text-white border border-gray-600">
+            <table id="expensesRecord" class="mt-4 w-full text-sm text-center text-white border border-gray-600">
                 <thead>
                     <tr class="border-b border-gray-600">
                         <th class="py-2 px-2 border-r border-gray-600">Item</th>
@@ -101,6 +101,44 @@
         year: "numeric"
     });
 
-    // Existing functionality...
+    // Add Expenses Button Functionality
+    const addExpenseBtn = document.getElementById("addExpenseBtn");
+    const itemNameInput = document.getElementById("itemName");
+    const qtyInput = document.getElementById("qty");
+    const rateInput = document.getElementById("rate");
+    const amountInput = document.getElementById("amount");
+    const expensesRecordTable = document.getElementById("expensesRecord").getElementsByTagName("tbody")[0];
+
+    addExpenseBtn.addEventListener("click", function() {
+        // Get values from inputs
+        const itemName = itemNameInput.value.trim();
+        const qty = parseFloat(qtyInput.value);
+        const rate = parseFloat(rateInput.value);
+
+        // Validation
+        if (itemName === "" || isNaN(qty) || isNaN(rate) || qty <= 0 || rate <= 0) {
+            alert("Please enter valid values for item, quantity, and rate.");
+            return;
+        }
+
+        // Calculate amount
+        const amount = qty * rate;
+        amountInput.value = amount.toFixed(2); // Update the amount field
+
+        // Add record to the table
+        const row = expensesRecordTable.insertRow();
+        row.innerHTML = `
+            <td class="py-2 px-2 border-r border-gray-600">${itemName}</td>
+            <td class="py-2 px-2">${qty}</td>
+            <td class="py-2 px-2">${rate.toFixed(2)}</td>
+            <td class="py-2 px-2">${amount.toFixed(2)}</td>
+        `;
+
+        // Optionally, clear the input fields
+        itemNameInput.value = "";
+        qtyInput.value = "";
+        rateInput.value = "";
+        amountInput.value = "";
+    });
 </script>
 {% endblock %}
