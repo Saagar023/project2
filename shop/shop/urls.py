@@ -20,7 +20,7 @@ from base.urls import urlpatterns as base_urls
 
 from login.urls import urlpatterns as login_urls
 from sales.urls import urlpatterns as sales_urls
-
+from employee.urls import urlpatterns as employee_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +28,5 @@ urlpatterns = [
     path("", include("base.urls")),
     path("login/", include("login.urls")),
     path("sales/", include("sales.urls")),
+    path("employee/" , include("employee.urls"))
 ]

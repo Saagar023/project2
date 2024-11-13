@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+<div class=" w-full md:w-3/4 lg:w-2/4 xl:w-[50%] mx-auto rounded-lg shadow-xl p-6">
+    <!-- Back Button -->
+    <a href="/" class="text-teal-500 hover:text-teal-700 text-lg font-semibold mb-4 inline-block">
+        <i class="fas fa-arrow-left" aria-hidden="true"></i> Back
+    </a>
+
+    <div class="text-center text-gray-800 mb-6">
+        <h2 class="text-4xl font-bold text-teal-600">Employee Attendance</h2>
+        <p class="text-lg font-light text-gray-600">November 2024</p>
+    </div>
+
+    <div class="w-full rounded-lg overflow-hidden shadow-lg p-6 flex justify-center bg-black bg-opacity-20">
+        <table class="w-[90%] text-center text-sm sm:text-base ">
+            <thead>
+                <tr class="text-white font-semibold">
+                    <th class="py-3 px-4">Date</th>
+                    <th class="py-3 px-4">Employee</th>
+                    <th class="py-3 px-4">Status</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-700">
+                {% if not attendances %}
+                    <tr>
+                        <td colspan="3" class="py-4 text-center text-gray-500">No attendance records available.</td>
+                    </tr>
+                {% else %}
+                    {% for attendance in attendances %}
+                        <tr class="border-b border-teal-300 hover:bg-teal-50">
+                            <td class="py-2 px-4">{{ attendance.date|date:"d M Y" }}</td>
+                            <td class="py-2 px-4">{{ attendance.employee_name }}</td>
+                            <td class="py-2 px-4 {% if attendance.status == 'Present' %}text-green-600{% else %}text-red-600{% endif %} font-semibold">{{ attendance.status }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

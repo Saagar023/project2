@@ -46,6 +46,7 @@ externalapp=[
     'base',
     'login',
     'sales',
+    'employee',
 ]
 
 INSTALLED_APPS = externalapp + INSTALLED_APPS
