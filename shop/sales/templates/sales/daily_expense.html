@@ -1,0 +1,128 @@
+{% extends "base/base.html" %} 
+{% block title %}Daily Expenses Entry{% endblock %} 
+{% block content %}
+<div class="w-full md:w-3/4 lg:max-w-2xl p-4 md:p-6 bg-gray-800 text-white rounded-lg shadow-lg mx-auto">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+        <h1 class="text-lg font-semibold">Daily Expenses</h1>
+        <p class="text-sm">Date: 21.Nov.2024</p>
+    </div>
+
+    <!-- Content Section -->
+    <div class="mt-4 space-y-4 md:space-y-0 md:flex md:space-x-4">
+        <!-- Expenses Information -->
+        <div class="flex-1 bg-gray-700 p-4 rounded-lg">
+            <h2 class="text-center font-semibold pb-2 border-b border-gray-600 text-white">Expenses Information</h2>
+            <table class="w-full text-sm text-left text-white border border-gray-600">
+                <tbody>
+                    <tr class="border-b border-gray-600">
+                        <td class="py-2 px-4 border-r border-gray-600 text-white">Item Name:</td>
+                        <td class="py-2 px-4">
+                            <input type="text" id="itemName" class="bg-opacity-10 bg-gray-300 text-black rounded px-2 py-1 w-full">
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-600">
+                        <td class="py-2 px-4 border-r border-gray-600 text-white">Qty.:</td>
+                        <td class="py-2 px-4">
+                            <input type="number" id="qty" class="bg-opacity-10 bg-gray-300 text-black rounded px-2 py-1 w-full">
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-600">
+                        <td class="py-2 px-4 border-r border-gray-600 text-white">Rate:</td>
+                        <td class="py-2 px-4">
+                            <input type="number" id="rate" class="bg-opacity-10 bg-gray-300 text-black rounded px-2 py-1 w-full">
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-600">
+                        <td class="py-2 px-4 border-r border-gray-600 text-white">Amount:</td>
+                        <td class="py-2 px-4">
+                            <input type="number" id="amount" class="bg-opacity-10 bg-gray-300 text-black rounded px-2 py-1 w-full" disabled>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="addExpenseBtn" class="w-full mt-4 py-2 bg-white bg-opacity-10 hover:bg-blue-600 text-black font-semibold rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                Add Expenses
+            </button>
+        </div>
+
+        <!-- Expenses Record -->
+        <div class="flex-1 bg-gray-700 p-4 rounded-lg mt-4 md:mt-0">
+            <h2 class="text-center font-semibold pb-2 border-b border-gray-600">Expenses Record</h2>
+            <table id="expensesRecord" class="mt-4 w-full text-sm text-left text-white border border-gray-600">
+                <thead>
+                    <tr class="border-b border-gray-600">
+                        <th class="py-2 px-2 border-r border-gray-600">Item</th>
+                        <th class="py-2 px-2">Qty</th>
+                        <th class="py-2 px-2">Rate</th>
+                        <th class="py-2 px-2">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Records will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="mt-4 p-4 bg-gray-700 rounded-lg">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+            <p class="text-sm">In words: <span class="underline ml-2">___________________________</span></p>
+            <p class="text-sm mt-2 md:mt-0">Total: <span class="underline ml-2" id="totalAmount">__________</span></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Add expense function
+    document.getElementById("addExpenseBtn").addEventListener("click", function() {
+        // Get the values from the input fields
+        const itemName = document.getElementById("itemName").value;
+        const qty = document.getElementById("qty").value;
+        const rate = document.getElementById("rate").value;
+
+        // Check if all fields are filled out
+        if (itemName && qty && rate) {
+            // Calculate the amount
+            const amount = qty * rate;
+            document.getElementById("amount").value = amount;
+
+            // Add the new expense record to the table
+            const table = document.getElementById("expensesRecord").getElementsByTagName("tbody")[0];
+            const row = table.insertRow(table.rows.length);
+
+            row.innerHTML = `
+                <td class="py-2 px-4 border-r border-gray-600">${itemName}</td>
+                <td class="py-2 px-4">${qty}</td>
+                <td class="py-2 px-4">${rate}</td>
+                <td class="py-2 px-4">${amount}</td>
+            `;
+
+            // Clear input fields after adding the record
+            document.getElementById("itemName").value = "";
+            document.getElementById("qty").value = "";
+            document.getElementById("rate").value = "";
+            document.getElementById("amount").value = "";
+
+            // Update the total amount
+            updateTotal();
+        } else {
+            alert("Please fill in all fields!");
+        }
+    });
+
+    // Update total amount function
+    function updateTotal() {
+        let total = 0;
+        const rows = document.getElementById("expensesRecord").getElementsByTagName("tbody")[0].rows;
+
+        for (let i = 0; i < rows.length; i++) {
+            total += parseFloat(rows[i].cells[3].innerText);
+        }
+
+        document.getElementById("totalAmount").innerText = total.toFixed(2);
+    }
+</script>
+
+{% endblock %}
