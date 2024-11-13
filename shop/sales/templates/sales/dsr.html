@@ -1,0 +1,93 @@
+{% extends "base/base.html" %} 
+{% block title %}Sales Entry{% endblock %} 
+{% block content %}
+
+<div class="container mx-auto my-10 p-6 bg-white bg-opacity-20 shadow-lg rounded-lg">
+  
+  <!-- Back Button -->
+  <div class="flex justify-start mb-4">
+    <a href="#" class="text-white hover:text-gray-300 font-semibold">&larr; Back</a>
+  </div>
+
+  <!-- Header Section -->
+  <header class="flex justify-center items-center pb-4 border-b border-gray-200">
+    <h1 class="text-2xl font-bold text-white">Daily Closing Sales Report</h1>
+  </header>
+  
+  <!-- Date Section -->
+  <div class="flex justify-end mt-2">
+    <span class="text-gray-300">Date: <strong id="current-date"></strong></span>
+  </div>
+
+  <!-- Summary Section -->
+  <section class="my-6">
+    <h2 class="text-lg font-semibold text-white">Summary</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+      <div class="p-4 bg-blue-100 bg-opacity-20 rounded-lg">
+        <p class="text-white">Total Sales</p>
+        <p class="text-xl font-bold text-white">Rs 5,250</p>
+      </div>
+      <div class="p-4 bg-green-100 bg-opacity-20 rounded-lg">
+        <p class="text-white">Items Sold</p>
+        <p class="text-xl font-bold text-white">320</p>
+      </div>
+      <div class="p-4 bg-yellow-100 bg-opacity-20 rounded-lg">
+        <p class="text-white">Discounts Given</p>
+        <p class="text-xl font-bold text-white">Rs 150</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sales Table -->
+  <section class="my-6">
+    <h2 class="text-lg font-semibold text-white">Sales Details</h2>
+    <div class="overflow-x-auto mt-4">
+      <table class="min-w-full bg-white bg-opacity-20 border border-gray-200">
+        <thead>
+          <tr class="bg-gray-800 text-white uppercase text-sm leading-normal">
+            <th class="py-3 px-6 text-left">Item</th>
+            <th class="py-3 px-6 text-center">Quantity</th>
+            <th class="py-3 px-6 text-center">Unit Price</th>
+            <th class="py-3 px-6 text-center">Total</th>
+          </tr>
+        </thead>
+        <tbody class="text-white text-sm font-light">
+          <tr class="border-b border-gray-200 hover:bg-gray-700">
+            <td class="py-3 px-6 text-left">Product A</td>
+            <td class="py-3 px-6 text-center">50</td>
+            <td class="py-3 px-6 text-center text-white">Rs 25</td>
+            <td class="py-3 px-6 text-center text-white">Rs 1,250</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-700">
+            <td class="py-3 px-6 text-left">Product B</td>
+            <td class="py-3 px-6 text-center">100</td>
+            <td class="py-3 px-6 text-center text-white">Rs 15</td>
+            <td class="py-3 px-6 text-center text-white">Rs 1,500</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-700">
+            <td class="py-3 px-6 text-left">Product C</td>
+            <td class="py-3 px-6 text-center">70</td>
+            <td class="py-3 px-6 text-center text-white">Rs 20</td>
+            <td class="py-3 px-6 text-center text-white">Rs 1,400</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Footer Total Section -->
+  <footer class="flex justify-between items-center py-4 border-t border-gray-200 mt-6">
+    <div class="text-gray-300 font-semibold">Grand Total</div>
+    <div class="text-xl font-bold text-white">Rs 5,250</div>
+  </footer>
+</div>
+
+<script>
+  // Script to get the current date and display it
+  const dateElement = document.getElementById("current-date");
+  const currentDate = new Date().toISOString().split("T")[0]; // Format as YYYY-MM-DD
+  dateElement.textContent = currentDate;
+</script>
+
+{% endblock %}
