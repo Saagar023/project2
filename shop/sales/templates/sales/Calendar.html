@@ -1,10 +1,19 @@
 {% extends "base/base.html" %}
 {% block title %}Calendar{% endblock %}
 {% block content %}
-<div id="calendar" class="bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-lg p-6 shadow-lg max-w-lg w-full mx-auto">
+<div id="calendar" class="bg-black bg-opacity-20 text-white rounded-lg p-6 shadow-lg w-4/6 max-w-3xl mx-auto my-8">
+    <!-- Back Button -->
+    <a href="/" class="flex items-center text-gray-400 hover:text-white mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-6 w-6 mr-2" viewBox="0 0 24 24">
+            <path d="M15.54 3.23a1 1 0 010 1.41L10.18 10H21a1 1 0 010 2H10.18l5.36 5.36a1 1 0 11-1.41 1.41l-7-7a1 1 0 010-1.41l7-7a1 1 0 011.41 0z"/>
+        </svg>
+        Back
+    </a>
+    
+    <!-- Calendar Content -->
     <h1 id="month" class="text-4xl font-bold text-center mb-2"></h1>
-    <p id="year" class="text-center text-lg font-semibold"></p>
-    <table class="w-full mt-4 text-lg table-auto border-separate border-spacing-2">
+    <p id="year" class="text-center text-lg font-semibold mb-4"></p>
+    <table class="w-full text-lg table-auto border-separate border-spacing-2">
         <thead>
             <tr class="text-center border-b border-white border-opacity-50">
                 <th class="text-red-500">Su</th>
@@ -21,75 +30,68 @@
 </div>
 
 <script>
-  // Get the current date
   const today = new Date();
   const currentMonth = today.getMonth();
   const currentYear = today.getFullYear();
   const currentDate = today.getDate();
 
-  // Month names
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
 
-  // Set the month and year
   document.getElementById("month").innerText = months[currentMonth];
   document.getElementById("year").innerText = currentYear;
 
-  // Get the first day of the month and the number of days in the month
   const firstDay = new Date(currentYear, currentMonth, 1).getDay();
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-  // Generate the calendar dates
   const datesContainer = document.getElementById("dates");
-  datesContainer.innerHTML = ""; // Clear existing rows
+  datesContainer.innerHTML = "";
 
   let row = document.createElement("tr");
 
-  // Add empty cells for the days before the first day
   for (let i = 0; i < firstDay; i++) {
     const emptyCell = document.createElement("td");
     emptyCell.classList.add("border-t", "border-white", "border-opacity-50");
     row.appendChild(emptyCell);
   }
 
-  // Add the days of the month
   for (let i = 1; i <= daysInMonth; i++) {
     const dateCell = document.createElement("td");
     dateCell.innerText = i;
     dateCell.classList.add(
       "text-center",
       "rounded-full",
-      "h-10",
-      "w-10",
+      "h-12",
+      "w-12",
       "cursor-pointer",
       "hover:bg-gray-700",
+      "hover:scale-105",
+      "transition",
+      "transform",
+      "duration-150",
       "border-t",
       "border-white",
       "border-opacity-50"
     );
 
-    // Highlight the current date with white text and a distinct background
     if (i === currentDate) {
-      dateCell.classList.add("bg-white", "text-gray-900", "font-bold");
+      dateCell.classList.add("bg-white", "text-gray-900", "font-bold", "shadow-md");
     }
 
-    // Highlight Saturdays as weekends in red
     if ((i + firstDay) % 7 === 0) {
       dateCell.classList.add("bg-red-500", "text-white", "font-bold");
     }
 
     row.appendChild(dateCell);
 
-    // Start a new row after every Saturday (6th column)
     if ((i + firstDay) % 7 === 0) {
       datesContainer.appendChild(row);
       row = document.createElement("tr");
     }
   }
 
-  // Append the last row if it has remaining cells
   if (row.childNodes.length > 0) {
     datesContainer.appendChild(row);
   }
