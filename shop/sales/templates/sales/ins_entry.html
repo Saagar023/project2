@@ -1,0 +1,131 @@
+{% extends "base/base.html" %} 
+{% block title %}Item and Price Entry{% endblock %} 
+{% block content %}
+<div class="w-full md:w-3/4 lg:max-w-2xl p-4 md:p-6 bg-gray-800 text-white rounded-lg shadow-lg mx-auto">
+    <!-- Header Section -->
+    <div class="flex items-center justify-between pb-4 border-b border-gray-700">
+        <button 
+            onclick="window.history.back()" 
+            class="flex items-center text-sm font-medium text-blue-400 hover:text-blue-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back
+        </button>
+    </div>
+
+    <div>
+        <div>
+            <h1 class="text-lg font-semibold text-center">Item and Price Entry</h1>
+        </div>
+
+        <div class="flex justify-end">
+            <p id="currentDate" class="text-sm"></p>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="mt-4 space-y-4 md:space-y-0 md:flex md:space-x-4">
+        <!-- Item Details -->
+        <div class="flex-1 bg-gray-700 p-4 rounded-lg">
+            <h2 class="text-center font-semibold pb-2 border-b border-gray-600 text-white">Item Details</h2>
+            <table class="w-full text-sm text-left text-black border border-gray-600">
+                <tbody>
+                    <tr class="border-b border-gray-600">
+                        <td class="py-2 px-4 border-r border-gray-600 text-white">Item Name:</td>
+                        <td class="py-2 px-4">
+                            <input type="text" id="itemName" class="text-black rounded px-2 py-1 w-full">
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-600">
+                        <td class="py-2 px-4 border-r border-gray-600 text-white">Qty.:</td>
+                        <td class="py-2 px-4">
+                            <input type="number" id="qty" class="bg-opacity-10 bg-gray-300 text-black rounded px-2 py-1 w-full">
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-600">
+                        <td class="py-2 px-4 border-r border-gray-600 text-white">Selling Price:</td>
+                        <td class="py-2 px-4">
+                            <input type="number" id="sellingPrice" class="bg-opacity-10 bg-gray-300 text-black rounded px-2 py-1 w-full">
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-600">
+                        <td class="py-2 px-4 border-r border-gray-600 text-white">Cost Price:</td>
+                        <td class="py-2 px-4">
+                            <input type="number" id="costPrice" class="bg-opacity-10 bg-gray-300 text-black rounded px-2 py-1 w-full">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="addItemBtn" class="w-full mt-4 py-2 bg-white bg-opacity-10 hover:bg-blue-600 text-black font-semibold rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                Add Item
+            </button>
+        </div>
+
+        <!-- Item Listed -->
+        <div class="flex-1 bg-gray-700 p-4 rounded-lg mt-4 md:mt-0">
+            <h2 class="text-center font-semibold pb-2 border-b border-gray-600">Item Listed</h2>
+            <table id="itemList" class="mt-4 w-full text-sm text-center text-white border border-gray-600">
+                <thead>
+                    <tr class="border-b border-gray-600">
+                        <th class="py-2 px-2 border-r border-gray-600">Item</th>
+                        <th class="py-2 px-2">Qty</th>
+                        <th class="py-2 px-2">Selling Price</th>
+                        <th class="py-2 px-2">Cost Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Records will be added here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="text-right mt-6">
+        <button
+            id="submitSales"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg"
+        >
+            Submit
+        </button>
+    </div>
+</div>
+
+<script>
+    // Display current date
+    const currentDateElement = document.getElementById('currentDate');
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    });
+    currentDateElement.textContent = `Date: ${formattedDate}`;
+
+    // Add item function
+    document.getElementById("addItemBtn").addEventListener("click", function() {
+        const itemName = document.getElementById("itemName").value;
+        const qty = document.getElementById("qty").value;
+        const sellingPrice = document.getElementById("sellingPrice").value;
+        const costPrice = document.getElementById("costPrice").value;
+
+        if (itemName && qty && sellingPrice && costPrice) {
+            const table = document.getElementById("itemList").getElementsByTagName("tbody")[0];
+            const row = table.insertRow(table.rows.length);
+            row.innerHTML = `
+                <td class="py-2 px-4 border-r border-gray-600">${itemName}</td>
+                <td class="py-2 px-4">${qty}</td>
+                <td class="py-2 px-4">${sellingPrice}</td>
+                <td class="py-2 px-4">${costPrice}</td>
+            `;
+            document.getElementById("itemName").value = "";
+            document.getElementById("qty").value = "";
+            document.getElementById("sellingPrice").value = "";
+            document.getElementById("costPrice").value = "";
+        } else {
+            alert("Please fill in all fields!");
+        }
+    });
+</script>
+{% endblock %}

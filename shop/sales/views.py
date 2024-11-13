@@ -9,3 +9,6 @@ def calendar(request):
     return render(request, 'sales/Calendar.html')
 def einfo(request):
     return render(request, 'sales/einfo.html')
+def ins_entry(request):
+    return render(request, 'sales/ins_entry.html')
+
