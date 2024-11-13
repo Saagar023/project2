@@ -1,0 +1,119 @@
+{% extends "base/base.html" %} {% block title %}Sales Entry{% endblock %} {%block content %}
+
+<body
+  class="bg-gradient-to-br from-purple-700 to-indigo-900 h-screen flex justify-center items-center"
+>
+<div
+class="bg-black bg-opacity-10 backdrop-blur-lg rounded-xl p-6 md:p-12 w-full max-w-5xl text-white shadow-lg mx-auto"
+>
+<h1 class="text-center text-2xl font-semibold mb-8 ">Sale’s Entry</h1>
+<div class="text-right mb-4">
+  <p>Date: <span class="underline">21 Nov, 2024</span></p>
+</div>
+
+<!-- Sale Items Table -->
+<div class="overflow-x-auto">
+  <table
+    class="w-full table-auto border-collapse border border-gray-600 text-center"
+  >
+    <thead>
+      <tr class="bg-gray-700">
+        <th class="border border-gray-600 px-4 py-2">S.N.</th>
+        <th class="border border-gray-600 px-4 py-2">Particular</th>
+        <th class="border border-gray-600 px-4 py-2">Rate</th>
+        <th class="border border-gray-600 px-4 py-2">Qty</th>
+        <th class="border border-gray-600 px-4 py-2">Amount</th>
+        <th class="border border-gray-600 px-4 py-2">Customer Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Sale Items Rows -->
+      <tr>
+        <td class="border border-gray-600 px-4 py-2">1</td>
+        <td class="border border-gray-600 px-4 py-2">Item Name</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+        <td class="border border-gray-600 px-4 py-2">0</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+
+        <!-- Customer Details Cell with Rowspan -->
+        <td
+class="border border-gray-600 px-4 py-2 text-left align-top"
+rowspan="5"
+>
+<div class="space-y-4">
+    <!-- Customer Information Section -->
+    <div class="space-y-2 text-left">
+        <p>Bill no.: <span class="underline">______</span></p>
+        <p>Name: <span class="underline">_________________</span></p>
+        <p>Email: <span class="underline">_________________</span></p>
+        <p>Phone: <span class="underline">_______________</span></p>
+    </div>
+
+    <!-- Remark Section -->
+    <label for="remark" class="block font-semibold text-left">Remark</label>
+    <textarea
+id="remark"
+class="w-full p-2 border border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 resize-none opacity-10 "
+rows="4"
+placeholder="Enter your remarks here..."
+></textarea>
+
+</div>
+</td>
+
+      </tr>
+
+      <!-- Additional rows for items as needed -->
+      <tr>
+        <td class="border border-gray-600 px-4 py-2">2</td>
+        <td class="border border-gray-600 px-4 py-2">Item Name</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+        <td class="border border-gray-600 px-4 py-2">0</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-600 px-4 py-2">3</td>
+        <td class="border border-gray-600 px-4 py-2">Item Name</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+        <td class="border border-gray-600 px-4 py-2">0</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-600 px-4 py-2">4</td>
+        <td class="border border-gray-600 px-4 py-2">Item Name</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+        <td class="border border-gray-600 px-4 py-2">0</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+      </tr>
+      <tr>
+        <td class="border border-gray-600 px-4 py-2">5</td>
+        <td class="border border-gray-600 px-4 py-2">Item Name</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+        <td class="border border-gray-600 px-4 py-2">0</td>
+        <td class="border border-gray-600 px-4 py-2">0.00</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="flex justify-between pt-4 ">
+    
+        <!-- In words on the left with a gap between Total -->
+        <div class=" justify-start pr-4 w-1/2">
+          <p class="p-2 text-left">
+            In words: <span class="float-left">Zero</span>
+          </p>
+        </div>
+        
+        <!-- Total on the right -->
+        <div class="justify-start">
+          <p class="p-2">
+            Total: <span class="float-left">0.00</span>
+          </p>
+        </div>
+</div>
+</div>
+
+</body>
+
+{% endblock %}

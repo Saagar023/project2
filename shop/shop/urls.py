@@ -19,6 +19,7 @@ from django.urls import path, include
 from base.urls import urlpatterns as base_urls
 
 from login.urls import urlpatterns as login_urls
+from sales.urls import urlpatterns as sales_urls
 
 
 urlpatterns = [
@@ -26,4 +27,5 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path("", include("base.urls")),
     path("login/", include("login.urls")),
+    path("sales/", include("sales.urls")),
 ]

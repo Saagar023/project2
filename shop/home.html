@@ -1,34 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Entry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-indigo-800 to-purple-800 h-screen flex items-center justify-center">
-  <div class="absolute top-10 left-10">
-    <button class="px-4 py-2 border border-white text-white rounded-full hover:bg-white hover:text-indigo-800 transition">
-      Company Logo
-    </button>
-  </div>
-  
-  <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-lg p-8 w-80 text-white shadow-lg">
-    <form action="#" method="POST" class="space-y-4">
-      <div>
-        <label for="username" class="block text-lg font-semibold">Username:</label>
-        <input type="text" id="username" name="username" class="mt-1 px-3 py-2 w-full bg-transparent border border-white rounded focus:outline-none focus:border-indigo-300">
-      </div>
-      <div>
-        <label for="password" class="block text-lg font-semibold">Password:</label>
-        <input type="password" id="password" name="password" class="mt-1 px-3 py-2 w-full bg-transparent border border-white rounded focus:outline-none focus:border-indigo-300">
-      </div>
-      <button type="submit" class="mt-4 w-full py-2 bg-white text-indigo-800 font-semibold rounded-full hover:bg-indigo-200 transition">Log In</button>
-    </form>
-    <div class="mt-6 text-center">
-      <a href="#" class="text-sm text-gray-300 hover:underline">Login Options</a><br>
-      <a href="#" class="text-sm text-gray-300 hover:underline">Forgot Password</a>
+<body class="bg-gradient-to-b from-blue-900 to-purple-900 flex items-center justify-center min-h-screen">
+    <div class="bg-gray-200 bg-opacity-20 p-8 rounded-lg shadow-lg w-full max-w-4xl">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-semibold text-white">Sale's Entry</h1>
+            <p class="text-lg text-white">Date: 21.Nov.2024</p>
+        </div>
+        
+        <!-- Sales Table -->
+        <div class="flex">
+            <div class="w-3/4">
+                <div class="overflow-hidden border border-gray-400 rounded-lg">
+                    <div class="grid grid-cols-5 gap-0 text-center bg-gray-200 text-gray-700 font-semibold">
+                        <div class="p-2 border-r border-gray-400">S.N.</div>
+                        <div class="p-2 border-r border-gray-400 col-span-2">Particular</div>
+                        <div class="p-2 border-r border-gray-400">Rate</div>
+                        <div class="p-2 border-r border-gray-400">Qty</div>
+                        <div class="p-2">Amount</div>
+                    </div>
+                    <!-- Table Rows -->
+                    <div class="divide-y divide-gray-400">
+                        <!-- Repeat the following div for each row in the table -->
+                        <div class="grid grid-cols-5 gap-0 text-center text-white">
+                            <div class="p-2 border-r border-gray-400">1</div>
+                            <div class="p-2 border-r border-gray-400 col-span-2">Item Name</div>
+                            <div class="p-2 border-r border-gray-400">100</div>
+                            <div class="p-2 border-r border-gray-400">1</div>
+                            <div class="p-2">100</div>
+                        </div>
+                        <!-- Additional rows can be added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Details -->
+            <div class="w-1/4 pl-4">
+                <div class="bg-gray-200 bg-opacity-40 p-4 rounded-lg">
+                    <h2 class="text-lg text-white font-semibold mb-2">Customer Details</h2>
+                    <div class="text-sm text-white space-y-1">
+                        <p>Bill no.:</p>
+                        <p>Name:</p>
+                        <p>Email:</p>
+                        <p>Phone:</p>
+                    </div>
+                    <div class="mt-4">
+                        <label class="text-white block mb-1">Remarks:</label>
+                        <textarea class="w-full h-20 p-2 rounded bg-gray-100 bg-opacity-40 text-black" placeholder="Enter remarks"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-4 flex justify-between items-center bg-gray-200 bg-opacity-20 p-4 rounded-lg">
+            <div class="text-white">In words:</div>
+            <div class="text-white font-semibold">Total:</div>
+        </div>
     </div>
-  </div>
 </body>
 </html>

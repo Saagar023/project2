@@ -45,6 +45,7 @@ externalapp=[
     'django_browser_reload',
     'base',
     'login',
+    'sales',
 ]
 
 INSTALLED_APPS = externalapp + INSTALLED_APPS
