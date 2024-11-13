@@ -6,6 +6,6 @@ def sales_entry(request):
 def daily_expense(request):
     return render(request, 'sales/daily_expense.html')
 def calendar(request):
-    return render(request, 'sales/calendar.html')
+    return render(request, 'sales/Calendar.html')
 def einfo(request):
     return render(request, 'sales/einfo.html')
