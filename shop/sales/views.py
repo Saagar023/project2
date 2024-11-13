@@ -5,3 +5,7 @@ def sales_entry(request):
     return render(request, 'sales/sales_entry.html')
 def daily_expense(request):
     return render(request, 'sales/daily_expense.html')
+def calendar(request):
+    return render(request, 'sales/calendar.html')
+def einfo(request):
+    return render(request, 'sales/einfo.html')
