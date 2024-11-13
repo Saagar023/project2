@@ -5,16 +5,17 @@
 <div class="container mx-auto my-10 p-6 bg-white bg-opacity-20 shadow-lg rounded-lg">
   
   <!-- Back Button -->
-    <div class="flex items-center justify-between pb-4 border-b border-gray-700">
+  <div class="flex items-center justify-between pb-4 border-b border-gray-700">
       <button 
           onclick="window.history.back()" 
-          class="flex items-center text-sm text-white text-blue-400 hover:text-blue-600">
+          class="flex items-center text-sm text-white hover:text-blue-600">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 mr-2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
           Back
       </button>
   </div>
+
   <!-- Header Section -->
   <header class="flex justify-center items-center pb-4 border-b border-gray-200">
     <h1 class="text-2xl font-bold text-white">Daily Closing Sales Report</h1>
@@ -25,10 +26,25 @@
     <span class="text-gray-300">Date: <strong id="current-date"></strong></span>
   </div>
 
+  <!-- Opening and Closing Balances Section in the same row -->
+  <section class="my-6">
+    <h2 class="text-lg font-semibold text-white">Balance Information</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
+      <div class="p-4 bg-purple-100 bg-opacity-20 rounded-lg">
+        <p class="text-white">Opening Balance</p>
+        <p class="text-xl font-bold text-white">Rs 10,000</p>
+      </div>
+      <div class="p-4 bg-orange-100 bg-opacity-20 rounded-lg">
+        <p class="text-white">Closing Balance</p>
+        <p class="text-xl font-bold text-white">Rs 15,000</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Summary Section -->
   <section class="my-6">
     <h2 class="text-lg font-semibold text-white">Summary</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-4">
       <div class="p-4 bg-blue-100 bg-opacity-20 rounded-lg">
         <p class="text-white">Total Sales</p>
         <p class="text-xl font-bold text-white">Rs 5,250</p>
@@ -61,20 +77,20 @@
           <tr class="border-b border-gray-200 hover:bg-gray-700">
             <td class="py-3 px-6 text-left">Product A</td>
             <td class="py-3 px-6 text-center">50</td>
-            <td class="py-3 px-6 text-center text-white">Rs 25</td>
-            <td class="py-3 px-6 text-center text-white">Rs 1,250</td>
+            <td class="py-3 px-6 text-center">Rs 25</td>
+            <td class="py-3 px-6 text-center">Rs 1,250</td>
           </tr>
           <tr class="border-b border-gray-200 hover:bg-gray-700">
             <td class="py-3 px-6 text-left">Product B</td>
             <td class="py-3 px-6 text-center">100</td>
-            <td class="py-3 px-6 text-center text-white">Rs 15</td>
-            <td class="py-3 px-6 text-center text-white">Rs 1,500</td>
+            <td class="py-3 px-6 text-center">Rs 15</td>
+            <td class="py-3 px-6 text-center">Rs 1,500</td>
           </tr>
           <tr class="border-b border-gray-200 hover:bg-gray-700">
             <td class="py-3 px-6 text-left">Product C</td>
             <td class="py-3 px-6 text-center">70</td>
-            <td class="py-3 px-6 text-center text-white">Rs 20</td>
-            <td class="py-3 px-6 text-center text-white">Rs 1,400</td>
+            <td class="py-3 px-6 text-center">Rs 20</td>
+            <td class="py-3 px-6 text-center">Rs 1,400</td>
           </tr>
           <!-- Add more rows as needed -->
         </tbody>
