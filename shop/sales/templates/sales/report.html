@@ -1,0 +1,87 @@
+{% extends "base/base.html" %} 
+{% block title %}Sales Entry{% endblock %} 
+
+{% block content %}
+
+<!-- Top-left Button -->
+<div class="fixed top-4 left-4">
+  <button id="addEntryButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Add Entry
+  </button>
+</div>
+
+<!-- Report-style Ledger Table -->
+<div class="container mx-auto p-12 bg-white bg-opacity-20 shadow-lg rounded-lg">
+  <h1 class="text-4xl font-bold mb-8 text-center">Journal Ledger Report</h1>
+  
+  <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead>
+          <tr class="bg-gray-800 text-white text-left">
+              <th class="px-6 py-3 text-black">Date</th>
+              <th class="px-6 py-3 text-black">Account</th>
+              <th class="px-6 py-3 text-black">Description</th>
+              <th class="px-6 py-3 text-right text-black">Debit</th>
+              <th class="px-6 py-3 text-right text-black">Credit</th>
+              <th class="px-6 py-3 text-right text-black">Amount</th>
+          </tr>
+      </thead>
+      <tbody id="ledgerBody" class="text-gray-700">
+          <!-- Sample row for initial content -->
+          <tr class="bg-gray-100 border-b hover:bg-gray-200">
+              <td class="px-6 py-4 text-black">2024-11-14</td>
+              <td class="px-6 py-4 text-black">Cash</td>
+              <td class="px-6 py-4 text-black">Initial Balance</td>
+              <td class="px-6 py-4 text-right text-black">1000</td>
+              <td class="px-6 py-4 text-right text-black">0</td>
+              <td class="px-6 py-4 text-right text-black">1000</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+<!-- JavaScript for Adding Entries -->
+<script>
+  document.getElementById("addEntryButton").addEventListener("click", function() {
+      // Prompting the user for entry type and amount
+      const entryType = prompt("Enter Entry Type (Sales/Expenses):").toLowerCase();
+      const amount = prompt("Enter Amount:", "0");
+
+      // Getting today's date
+      const date = new Date().toISOString().split('T')[0];
+
+      // Initializing entry variables
+      let account = "";
+      let description = "";
+      let debit = "0";
+      let credit = "0";
+
+      // Setting account, description, debit, and credit based on entry type
+      if (entryType === "sales") {
+          account = "Sales";
+          description = "Product Sale";
+          credit = amount;
+      } else if (entryType === "expenses") {
+          account = "Expense";
+          description = "Business Expense";
+          debit = amount;
+      } else {
+          alert("Invalid Entry Type");
+          return;
+      }
+
+      // Creating a new row and appending it to the table
+      const newRow = document.createElement("tr");
+      newRow.className = "bg-gray-100 border-b hover:bg-gray-200";
+      newRow.innerHTML = `
+          <td class="px-6 py-4 text-black">${date}</td>
+          <td class="px-6 py-4 text-black">${account}</td>
+          <td class="px-6 py-4 text-black">${description}</td>
+          <td class="px-6 py-4 text-right text-black">${debit}</td>
+          <td class="px-6 py-4 text-right text-black">${credit}</td>
+          <td class="px-6 py-4 text-right text-black">${amount}</td>
+      `;
+      document.getElementById("ledgerBody").appendChild(newRow);
+  });
+</script>
+
+{% endblock %}

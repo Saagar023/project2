@@ -13,4 +13,6 @@ def ins_entry(request):
     return render(request, 'sales/ins_entry.html')
 def dsr(request):
     return render(request, 'sales/dsr.html')
+def report(request):
+    return render(request, 'sales/report.html')
 
