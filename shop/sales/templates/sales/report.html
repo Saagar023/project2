@@ -2,86 +2,82 @@
 {% block title %}Sales Entry{% endblock %} 
 
 {% block content %}
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-<!-- Top-left Button -->
-<div class="fixed top-4 left-4">
-  <button id="addEntryButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-      Add Entry
-  </button>
-</div>
+    <div class="border-2 border-green-500 rounded-lg p-8 bg-white bg-opacity-20 max-w-3xl shadow-md w-full mx-4">
+        
+        <!-- Back Button -->
+        <div class="mb-4">
+            <button onclick="history.back()" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
+                Back
+            </button>
+        </div>
 
-<!-- Report-style Ledger Table -->
-<div class="container mx-auto p-12 bg-white bg-opacity-20 shadow-lg rounded-lg">
-  <h1 class="text-4xl font-bold mb-8 text-center">Journal Ledger Report</h1>
-  
-  <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-      <thead>
-          <tr class="bg-gray-800 text-white text-left">
-              <th class="px-6 py-3 text-black">Date</th>
-              <th class="px-6 py-3 text-black">Account</th>
-              <th class="px-6 py-3 text-black">Description</th>
-              <th class="px-6 py-3 text-right text-black">Debit</th>
-              <th class="px-6 py-3 text-right text-black">Credit</th>
-              <th class="px-6 py-3 text-right text-black">Amount</th>
-          </tr>
-      </thead>
-      <tbody id="ledgerBody" class="text-gray-700">
-          <!-- Sample row for initial content -->
-          <tr class="bg-gray-100 border-b hover:bg-gray-200">
-              <td class="px-6 py-4 text-black">2024-11-14</td>
-              <td class="px-6 py-4 text-black">Cash</td>
-              <td class="px-6 py-4 text-black">Initial Balance</td>
-              <td class="px-6 py-4 text-right text-black">1000</td>
-              <td class="px-6 py-4 text-right text-black">0</td>
-              <td class="px-6 py-4 text-right text-black">1000</td>
-          </tr>
-      </tbody>
-  </table>
-</div>
+        <!-- Journal Entry Heading -->
+        <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Journal Entry Format</h1>
 
-<!-- JavaScript for Adding Entries -->
-<script>
-  document.getElementById("addEntryButton").addEventListener("click", function() {
-      // Prompting the user for entry type and amount
-      const entryType = prompt("Enter Entry Type (Sales/Expenses):").toLowerCase();
-      const amount = prompt("Enter Amount:", "0");
+        <div class="overflow-x-auto">
+            <table class="min-w-full">
+                <thead>
+                    <tr class="text-gray-600 font-semibold text-left">
+                        <th class="px-4 py-2 border-b">Date</th>
+                        <th class="px-4 py-2 border-b">Particulars of Business Transaction</th>
+                        <th class="px-4 py-2 border-b">Folio</th>
+                        <th class="px-4 py-2 border-b text-right">Debit</th>
+                        <th class="px-4 py-2 border-b text-right">Credit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-4 py-4 text-gray-700">XX</td>
+                        <td class="px-4 py-4 text-gray-700">
+                            <p class="mb-1">Debit A/C</p>
+                            <p class="mb-1">Credit A/C</p>
+                            <p class="italic text-gray-500">(Brief Narration of the Transaction)</p>
+                        </td>
+                        <td class="px-4 py-4 text-gray-700">-</td>
+                        <td class="px-4 py-4 text-right text-gray-700">Rs. 0.00</td>
+                        <td class="px-4 py-4 text-right text-gray-700">Rs. 0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-      // Getting today's date
-      const date = new Date().toISOString().split('T')[0];
+        <!-- Input Button -->
+        <div class="mt-6 flex justify-center">
+            <button id="addEntryButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Add Journal Entry
+            </button>
+        </div>
+    </div>
 
-      // Initializing entry variables
-      let account = "";
-      let description = "";
-      let debit = "0";
-      let credit = "0";
+    <!-- JavaScript for Adding Entry -->
+    <script>
+        document.getElementById("addEntryButton").addEventListener("click", function() {
+            // Prompting user for data input
+            const date = prompt("Enter Date (e.g., 2024-11-15):");
+            const debitAccount = prompt("Enter Debit Account:");
+            const creditAccount = prompt("Enter Credit Account:");
+            const narration = prompt("Enter Narration:");
+            const debitAmount = prompt("Enter Debit Amount (Rs.):", "0.00");
+            const creditAmount = prompt("Enter Credit Amount (Rs.):", "0.00");
 
-      // Setting account, description, debit, and credit based on entry type
-      if (entryType === "sales") {
-          account = "Sales";
-          description = "Product Sale";
-          credit = amount;
-      } else if (entryType === "expenses") {
-          account = "Expense";
-          description = "Business Expense";
-          debit = amount;
-      } else {
-          alert("Invalid Entry Type");
-          return;
-      }
-
-      // Creating a new row and appending it to the table
-      const newRow = document.createElement("tr");
-      newRow.className = "bg-gray-100 border-b hover:bg-gray-200";
-      newRow.innerHTML = `
-          <td class="px-6 py-4 text-black">${date}</td>
-          <td class="px-6 py-4 text-black">${account}</td>
-          <td class="px-6 py-4 text-black">${description}</td>
-          <td class="px-6 py-4 text-right text-black">${debit}</td>
-          <td class="px-6 py-4 text-right text-black">${credit}</td>
-          <td class="px-6 py-4 text-right text-black">${amount}</td>
-      `;
-      document.getElementById("ledgerBody").appendChild(newRow);
-  });
-</script>
+            // Creating a new row in the table
+            const tbody = document.querySelector("tbody");
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td class="px-4 py-4 text-gray-700">${date}</td>
+                <td class="px-4 py-4 text-gray-700">
+                    <p class="mb-1">${debitAccount}</p>
+                    <p class="mb-1">${creditAccount}</p>
+                    <p class="italic text-gray-500">(${narration})</p>
+                </td>
+                <td class="px-4 py-4 text-gray-700">-</td>
+                <td class="px-4 py-4 text-right text-gray-700">Rs. ${debitAmount}</td>
+                <td class="px-4 py-4 text-right text-gray-700">Rs. ${creditAmount}</td>
+            `;
+            tbody.appendChild(newRow);
+        });
+    </script>
 
 {% endblock %}
