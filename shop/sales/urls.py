@@ -11,4 +11,5 @@ urlpatterns = [
     path("ins_entry/", views.ins_entry, name='ins_entry'),
     path("dsr/", views.dsr, name='dsr'),
     path("report/", views.report, name='report'),
+    path("sentry/", views.sentry, name='sentry'),
 ]

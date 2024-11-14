@@ -1,0 +1,61 @@
+{% extends "base/base.html" %}
+{% block title %}Saving Entry{% endblock %}
+{% block content %}
+
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-md p-6 bg-white border border-blue-400 rounded shadow bg-opacity-20">
+
+      <!-- Back Button -->
+      <div class="mb-4">
+        <button onclick="history.back()" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
+            Back
+        </button>
+    </div>
+    
+    <h2 class="text-2xl font-bold text-center text-blue-800 mb-4">Saving Entry</h2>
+    
+    <div class="flex justify-end mb-4">
+      <div class="text-sm font-semibold">Date: <span id="current-date"></span></div>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-semibold">Amount:</label>
+      <input type="text" class="w-full border border-gray-300 rounded p-2 mt-1" placeholder="Enter amount">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-semibold">Payment Method:</label>
+      <select class="w-full border border-gray-300 rounded p-2 mt-1">
+        <option value="Cash">Cash</option>
+        <option value="Cheque">Cheque</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-semibold">Saccos Name:</label>
+      <input type="text" class="w-full border border-gray-300 rounded p-2 mt-1" placeholder="Enter Saccos name">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-semibold">Paid By:</label>
+      <input type="text" class="w-full border border-gray-300 rounded p-2 mt-1" placeholder="Enter payer's name">
+    </div>
+
+    <div class="mb-4">
+      <label class="block text-sm font-semibold">On Account of:</label>
+      <input type="text" class="w-full border border-gray-300 rounded p-2 mt-1" placeholder="Enter purpose or reason">
+    </div>
+
+    <!-- Add Entry Button -->
+    <div class="flex justify-center mt-6">
+      <button class="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-600">Add Entry</button>
+    </div>
+  </div>
+
+  <!-- Script to Set the Current Date -->
+  <script>
+    document.getElementById("current-date").textContent = new Date().toLocaleDateString();
+  </script>
+</body>
+
+{% endblock %}

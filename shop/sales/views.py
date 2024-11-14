@@ -15,4 +15,6 @@ def dsr(request):
     return render(request, 'sales/dsr.html')
 def report(request):
     return render(request, 'sales/report.html')
+def sentry(request):
+    return render(request, 'sales/sentry.html')
 
