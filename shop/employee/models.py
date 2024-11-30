@@ -1,16 +1,26 @@
+from django.contrib.auth.models import User
 from django.db import models
 import uuid
 
 # Create your models here.
 class Employee(models.Model):
+
+    user=models.ForeignKey(User, on_delete=models.CASCADE,null=True,blank=True )
+    GENDER_CHOICES = [
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
+    ]
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=200)
+    email =models.EmailField(max_length=200 ,null=True, blank=True  )
     phone = models.CharField(max_length=200)
     address = models.CharField(max_length=200)
     salary = models.CharField(max_length=200)
     dob = models.DateField()
     gender = models.CharField(max_length=200)
     citizenship = models.CharField(max_length=200)
+    admin= models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
